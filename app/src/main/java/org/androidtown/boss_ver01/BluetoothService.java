@@ -27,7 +27,7 @@ public class BluetoothService {
 
 	// RFCOMM Protocol
 	private static final UUID MY_UUID = UUID
-			.fromString("00000003-0000-1000-8000-00805F9B34FB");
+			.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
 	private BluetoothAdapter btAdapter;
 

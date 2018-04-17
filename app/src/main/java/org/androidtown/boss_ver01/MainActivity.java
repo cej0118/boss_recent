@@ -75,6 +75,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 if (resultCode == Activity.RESULT_OK) {
                     btService.getDeviceInfo(data);
                 }
+                startActivity(new Intent(this,SettingActivity.class));
                 break;
                 /**추가된 부분 끝 **/
 
