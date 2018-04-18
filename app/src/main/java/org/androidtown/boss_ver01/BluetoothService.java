@@ -302,6 +302,7 @@ public class BluetoothService {
 				mmSocket.connect();
 				Log.d(TAG, "Connect Success");
 
+
 			} catch (IOException e) {
 				connectionFailed(); // ���� ���н� �ҷ����� �޼ҵ�
 				Log.d(TAG, "Connect Fail");
@@ -337,10 +338,10 @@ public class BluetoothService {
 		}
 	}
 
-	private class ConnectedThread extends Thread {
-		private final BluetoothSocket mmSocket;
-		private final InputStream mmInStream;
-		private final OutputStream mmOutStream;
+		private class ConnectedThread extends Thread {
+			private final BluetoothSocket mmSocket;
+			private final InputStream mmInStream;
+			private final OutputStream mmOutStream;
 
 		public ConnectedThread(BluetoothSocket socket) {
 			Log.d(TAG, "create ConnectedThread");

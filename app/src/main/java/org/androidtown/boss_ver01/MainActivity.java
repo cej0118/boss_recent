@@ -76,6 +76,7 @@ public class MainActivity extends Activity implements OnClickListener {
                     btService.getDeviceInfo(data);
                 }
                 startActivity(new Intent(this,SettingActivity.class));
+                finish();
                 break;
                 /**추가된 부분 끝 **/
 
