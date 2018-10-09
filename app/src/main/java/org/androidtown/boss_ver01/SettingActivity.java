@@ -24,6 +24,11 @@ public class SettingActivity extends AppCompatActivity {
     private BluetoothSPP bt;
     private Button FB_on;       //플래시 on/off 버튼 id
     private Button FB_off;
+    private Switch FS;
+    private Button CB_on;
+    private Button CB_off;
+    private Switch CS;
+    private Switch Bar_Switch;
     BluetoothSocket mSocket = null;
 
     @Override
@@ -105,29 +110,29 @@ public class SettingActivity extends AppCompatActivity {
 
 
         //안전바 이벤트
-        Bar_Swich = (Switch)findViewById(R.id.bar_switch);
-        Bar_Swich.setOnCheckedChangeListener(new View.OnCheckedChangeListener()    //안전바 스위치 이벤트 처리
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Bar_Switch = (Switch)findViewById(R.id.bar_switch);
+        Bar_Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override                                              //안전바 스위치 이벤트 처리
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChedked) {
                 if(isChedked){
-                    //flash switch on
+                    //bar switch on
                     bt.send("bar_on",true);
                 }
                 else{
-                    //flash switch off
+                    //bar switch off
                     bt.send("bar_off",true);
                 }
             }
         });
-
-
+        
         //플래시 이벤트
         FS = (Switch)findViewById(R.id.flash_switch);
         FB_on = (Button)findViewById(R.id.flash_button_on);
         FB_off = (Button)findViewById(R.id.flash_button_off);
-        FS.setOnCheckedChangeListener(new View.OnCheckedChangeListener()    //플래시 스위치 이벤트 처리
-        {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+        FS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override                                              //플래시 스위치 이벤트 처리
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChedked) {
                 if(isChedked){
                     //flash switch on
                     bt.send("fs_on",true);
@@ -151,7 +156,35 @@ public class SettingActivity extends AppCompatActivity {
         });
 
 
-        //
+        //덮개 이벤트
+        CS = (Switch)findViewById(R.id.cover_switch);
+        CB_on = (Button)findViewById(R.id.cover_button_on);
+        CB_off = (Button)findViewById(R.id.cover_button_off);
+
+        CS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override                                              //덮개 스위치 이벤트 처리
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChedked) {
+                if(isChedked){
+                    //cover switch on
+                    bt.send("cs_on",true);
+                }
+                else{
+                    //cover switch off
+                    bt.send("cs_off",true);
+                }
+            }
+        });
+        CB_on.setOnClickListener(new View.OnClickListener()                 //덮개 on버튼 이벤트 처리
+        {
+            public void onClick(View v) { bt.send("c_on", true);
+            }
+        });
+        CB_off.setOnClickListener(new View.OnClickListener()                //덮개 off버튼 이벤트 처리
+        {
+            public void onClick(View v){
+                bt.send("c_off",true);
+            }
+        });
 
 
     }
