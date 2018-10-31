@@ -15,6 +15,8 @@ import android.widget.Switch;
 import android.widget.Toast;
 //라이브러리 부분
 //app 하단 gradle에 라이브러리 컴파일
+import java.sql.Time;
+
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
 import app.akexorcist.bluetotohspp.library.DeviceList;
@@ -29,6 +31,7 @@ public class SettingActivity extends AppCompatActivity {
     private Button CB_off;
     private Switch CS;
     private Switch Bar_Switch;
+    private Switch DS;
     BluetoothSocket mSocket = null;
 
     @Override
@@ -186,6 +189,21 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        DS=(Switch)findViewById(R.id.drive_switch);
+        DS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override                                              //플래시 스위치 이벤트 처리
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChedked) {
+                if(isChedked){
+                    //flash switch on
+                    bt.send("ds_on",true);
+                    bt.send("AT+RSSI?",true);
+                }
+                else{
+                    //flash switch off
+                    bt.send("ds_off",true);
+                }
+            }
+        });
 
     }
 
